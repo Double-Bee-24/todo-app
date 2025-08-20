@@ -1,0 +1,32 @@
+{
+  // worth checking out: https://www.npmjs.com/package/@tsconfig/node24
+  "extends": ["@tsconfig/strictest/tsconfig.json"],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "lib": ["ESNext", "ESNext.Array", "ESNext.Collection", "ESNext.Iterator", "ESNext.Promise"],
+
+    // something strict, maybe not needed
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "moduleDetection": "force",
+
+    // source
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // node-ts
+    // https://devblogs.microsoft.com/typescript/announcing-typescript-5-7/#path-rewriting-for-relative-paths
+    // https://devblogs.microsoft.com/typescript/announcing-typescript-5-8-beta/#the---erasablesyntaxonly-option
+    "noEmit": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "rewriteRelativeImportExtensions": true
+
+    // see also:
+    // for cloudflare: https://github.com/cloudflare/workers-sdk/tree/main/packages/workers-tsconfig
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
