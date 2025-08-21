@@ -1,9 +1,4 @@
 {
-  "trailingComma": "all",
-  "semi": false,
   "singleQuote": true,
-  "bracketSpacing": true,
-  "endOfLine": "lf",
-  "bracketSameLine": false,
-  "proseWrap": "preserve"
+  "trailingComma": "all"
 }
