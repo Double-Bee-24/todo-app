@@ -1,0 +1,14 @@
+:80 {
+    # Handle API and Swagger routes first
+    handle /api/* {
+        reverse_proxy todo_backend:5000
+    }
+ 
+    handle /swagger/* {
+        reverse_proxy todo_backend:5000
+    }
+ 
+    handle {
+        reverse_proxy frontend:3000
+    }
+}

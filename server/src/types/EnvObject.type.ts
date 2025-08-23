@@ -4,6 +4,6 @@ export interface EnvObject {
   POSTGRES_PORT: number;
   POSTGRES_USER: string;
   POSTGRES_PASSWORD: string;
-  POSTGRES_DATABASE: string;
+  POSTGRES_DB: string;
   POSTGRES_HOST: string;
 }

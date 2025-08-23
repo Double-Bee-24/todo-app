@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import typia from 'typia';
-import { EnvObject } from 'src/types/EnvObject.type';
+import type { EnvObject } from 'src/types/EnvObject.type';
 
 export const getConfig = () => {
   const { env } = process;
@@ -20,7 +20,7 @@ export const getConfig = () => {
     port: validatedEnv.PORT || 5000,
     user: validatedEnv.POSTGRES_USER,
     password: validatedEnv.POSTGRES_PASSWORD,
-    database: validatedEnv.POSTGRES_DATABASE,
+    database: validatedEnv.POSTGRES_DB,
     host: validatedEnv.POSTGRES_HOST,
     postgresPort: validatedEnv.POSTGRES_PORT,
   };

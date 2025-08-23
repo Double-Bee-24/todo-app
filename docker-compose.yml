@@ -1,0 +1,84 @@
+networks:
+  caddy:
+
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:2.9.1-alpine
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - $PWD/server/conf:/etc/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - caddy
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.2"
+
+  todo_backend:
+    container_name: todo_backend
+    env_file:
+      - server/.env
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - caddy
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.3"
+
+  frontend:
+    container_name: frontend
+    env_file:
+      - client/.env
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - caddy
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.2"
+
+  postgres_db:
+    container_name: postgres_db
+    image: postgres:17.4-alpine3.21
+    env_file:
+      - server/.env
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d todo_db -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - caddy
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+volumes:
+  caddy_data:
+  caddy_config:
+  postgres_data:
