@@ -1,26 +1,42 @@
-import { Injectable } from '@nestjs/common';
-import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Todo } from './entities/todo.entity';
+import type { IUpdateTodo, ICreateTodo } from 'src/api/structures/ITodo';
 
 @Injectable()
 export class TodosService {
-  create(createTodoDto: CreateTodoDto) {
-    return 'This action adds a new todo';
+  constructor(
+    @InjectRepository(Todo)
+    private todoRepository: Repository<Todo>,
+  ) {}
+
+  async create(createTodoDto: ICreateTodo) {
+    const todo = this.todoRepository.create(createTodoDto);
+    return await this.todoRepository.save(todo);
   }
 
   findAll() {
-    return `This action returns all todos`;
+    return this.todoRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} todo`;
+    return this.todoRepository.findOneBy({ id });
   }
 
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
+  async update(id: number, updateTodoDto: IUpdateTodo) {
+    const existingTodo = await this.findOne(id);
+
+    if (!existingTodo) {
+      throw new NotFoundException(`Todo with ID ${id} not found`);
+    }
+    // Merge the changes
+    const updatedTodo = this.todoRepository.merge(existingTodo, updateTodoDto);
+
+    return await this.todoRepository.save(updatedTodo);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  async remove(id: number) {
+    await this.todoRepository.delete(id);
   }
 }

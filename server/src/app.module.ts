@@ -24,4 +24,4 @@ const { host, postgresPort, user, password, database } = getConfig();
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
