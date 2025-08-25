@@ -34,7 +34,7 @@ export const TodoItem = ({
         </span>
         <button
           onClick={() => onDelete(id)}
-          className="text-red-500 hover:text-red-700 text-sm px-2 py-1"
+          className="cursor-pointer text-red-500 hover:text-red-700 text-sm px-2 py-1"
         >
           ×
         </button>

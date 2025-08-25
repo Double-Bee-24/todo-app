@@ -45,7 +45,7 @@ export const TodoFilters = ({
             variant={status === filterStatus ? 'default' : 'outline'}
             size="sm"
             onClick={() => onStatusChange(filterStatus)}
-            className="capitalize"
+            className="capitalize cursor-pointer"
           >
             {filterStatus}
           </Button>
@@ -61,6 +61,7 @@ export const TodoFilters = ({
           variant={sortBy === 'priority' && order === 'asc' ? 'default' : 'outline'}
           size="sm"
           onClick={() => onSortChange('priority', 'asc')}
+          className='cursor-pointer'
         >
           Priority ↑
         </Button>
@@ -68,6 +69,7 @@ export const TodoFilters = ({
           variant={sortBy === 'priority' && order === 'desc' ? 'default' : 'outline'}
           size="sm"
           onClick={() => onSortChange('priority', 'desc')}
+          className='cursor-pointer'
         >
           Priority ↓
         </Button>
@@ -75,6 +77,7 @@ export const TodoFilters = ({
           variant={!sortBy ? 'default' : 'outline'}
           size="sm"
           onClick={() => onSortChange(undefined, undefined)}
+          className='cursor-pointer'
         >
           Default
         </Button>

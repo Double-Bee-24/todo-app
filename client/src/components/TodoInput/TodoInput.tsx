@@ -54,9 +54,9 @@ export const TodoInput = ({ onTodoCreated }: TodoInputProps) => {
                 key={num}
                 type="button"
                 onClick={() => setPriority(num)}
-                className={`w-8 h-8 rounded-full text-xs font-medium transition-all duration-200 ${priority === num
-                    ? 'bg-blue-500 text-white shadow-md'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                className={`cursor-pointer w-8 h-8 rounded-full text-xs font-medium transition-all duration-200 ${priority === num
+                  ? 'bg-blue-500 text-white shadow-md'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
               >
                 {num}
@@ -73,7 +73,7 @@ export const TodoInput = ({ onTodoCreated }: TodoInputProps) => {
           <Button
             type="submit"
             disabled={!value.trim()}
-            className="ml-auto px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300"
+            className="ml-auto px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 cursor-pointer"
           >
             <Plus className="w-4 h-4 mr-1" />
             Add
