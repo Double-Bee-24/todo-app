@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import type { ICreateTodo, IUpdateTodo } from 'src/api/structures/ITodo';
@@ -20,8 +21,13 @@ export class TodosController {
   }
 
   @Get()
-  findAll() {
-    return this.todosService.findAll();
+  findAll(
+    @Query('search') search?: string,
+    @Query('status') status?: 'all' | 'done' | 'undone',
+    @Query('sortBy') sortBy?: 'priority',
+    @Query('order') order?: 'asc' | 'desc',
+  ) {
+    return this.todosService.findAll(search, status, sortBy, order);
   }
 
   @Get(':id')

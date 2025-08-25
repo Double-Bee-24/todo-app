@@ -41,7 +41,7 @@ services:
   frontend:
     container_name: frontend
     env_file:
-      - client/.env
+      - client/.env.local
     build:
       context: ./client
       dockerfile: Dockerfile

@@ -8,12 +8,12 @@ export class Todo {
   @Column()
   title: string;
 
-  @Column()
+  @Column({ default: false })
   is_completed: boolean;
 
   @Column()
   priority: number;
 
-  @Column()
+  @Column({ default: 'undone' })
   status: string;
 }

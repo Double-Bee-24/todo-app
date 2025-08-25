@@ -6,4 +6,6 @@ export interface EnvObject {
   POSTGRES_PASSWORD: string;
   POSTGRES_DB: string;
   POSTGRES_HOST: string;
+  API_BASE_URL: string;
+  FRONTEND_URL: string;
 }

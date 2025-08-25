@@ -17,11 +17,13 @@ export const getConfig = () => {
 
   return {
     env: validatedEnv.NODE_ENV,
-    port: validatedEnv.PORT || 5000,
+    port: validatedEnv.PORT,
     user: validatedEnv.POSTGRES_USER,
     password: validatedEnv.POSTGRES_PASSWORD,
     database: validatedEnv.POSTGRES_DB,
     host: validatedEnv.POSTGRES_HOST,
     postgresPort: validatedEnv.POSTGRES_PORT,
+    apiBaseUrl: validatedEnv.API_BASE_URL,
+    frontendUrl: validatedEnv.FRONTEND_URL,
   };
 };
