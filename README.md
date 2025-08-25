@@ -1,6 +1,6 @@
 # Todo app
 
-Todo app with task management features. It uses NestJS, TypeORM with PostgreSQL for the backend and Next.js for the frontend, deployed on AWS EC2.
+Todo app with task management features. It uses NestJS, TypeORM with PostgreSQL for the backend and Next.js for the frontend, deployed on AWS EC2. You can access it here: https://todo.bbilokin.online/
 
 ## Prerequisites
 
